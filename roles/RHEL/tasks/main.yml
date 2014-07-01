@@ -69,6 +69,7 @@
   notify: restart mysqld
 
 - name: Create the iptables file
+  tags: copy_iptables
   template: src=iptables.j2 dest=/etc/sysconfig/iptables
   notify: restart iptables
 
