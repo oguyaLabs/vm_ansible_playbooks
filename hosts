@@ -1,14 +1,12 @@
-[vms]
+# VM hosts..
+#[vms]
 
 #[vms-db_servers]
 #192.168.[103-150]
 
-[Redhat]
+[RHEL]
 192.168.1.103
 
-[vms:CentOS]
-192.168.1.104
-
-[vms:Debian]
+[Debian]
 192.168.1.105
 

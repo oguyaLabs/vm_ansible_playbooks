@@ -7,5 +7,11 @@
 - name: restart httpd
   service: name=httpd state=restarted
 
-- name: start mysqld
+- name: restart mysqld
   service: name=mysqld state=restarted
+
+#autostart service use systemctl enable OR chkconfig
+# - name: add mysqld to initd
+#   shell: /sbin/chkconfig --level 345 mysqld on
+- name: autostart mysqld
+  shell: /usr/bin/systemctl enable mysqld.service

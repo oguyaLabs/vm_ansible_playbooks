@@ -1,39 +1,36 @@
 ---
-# Debian: 
-#	copy apt conf
-# Redhat: 
-#	copy yum conf
-# Common:
-#	copy iptables
+# Deploy all configs to all vms
+#execute verbose to view more:: ansible-playbook vm_playbook.yaml -vvvv -u root
 
-- name: vms configuration play
-  hosts: all
-  remote_user: root
-  gather_facts: no
+- hosts: all
+  roles:
+  - role: common
 
-  vars:
-    #add vars
-    ssh_port: 22
+- hosts: RHEL
+  roles:
+  - role: RHEL
 
-- hosts: Redhat
-  gather_facts: no
+# - hosts: Debian
+#   roles:
+#   - role: Debain
 
-  tasks:
-    - name: copy yum configuration
-      template: src=templates/yum.conf dest=/etc/yum.conf
+# - name: vms configuration play
+#   hosts: all
+#   remote_user: root
+#   gather_facts: no
+
+#   vars:
+#     #add vars
+#     ssh_port: 22
+
+# - hosts: Redhat
+#   gather_facts: no
+
+#   tasks:
+#     - name: copy yum configuration
+#       template: src=templates/yum.conf dest=/etc/yum.conf
 
   # tasks:
     # - name: copy yum configuration
     #   template: src=templates/yum.conf dest=/etc/yum.conf
     #   when: hosts = "RedHat"
-
-    # - name: copy apt configuration
-    #   template: src=templates/apt.conf dest=/etc/apt.conf
-    #   when: ansible_os_family = "Debian"
-
-    # - name: get os version
-    #   command: uname
-    #   register: os_version
-
-    # - name: show os version
-    #   shell: echo {{os_version.stdout}}
