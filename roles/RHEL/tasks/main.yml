@@ -6,16 +6,19 @@
 # install: mysql, python-pip, php
 
 - name: Copy yum.conf to /etc/yum.conf
+  tags: copy_yum
   template: src=yum.conf dest=/etc/yum.conf
 
 - name: Create the EPEL Repository.
+  tags: copy_repos
   template: src=files/epel.repo.j2 dest=/etc/yum.repos.d/epel.repo
 
 - name: Create the GPG key for EPEL
+  tags: copy_repos
   copy: src=RPM-GPG-KEY-EPEL-7 dest=/etc/pki/rpm-gpg
 
 - name: Copy all rpm-fusion repos
-  tags: force_cp
+  tags: copy_repos
   copy: > 
       src={{item}}
       dest=/etc/yum.repos.d/
@@ -23,7 +26,7 @@
      - rpmfusion-*
 
 - name: Copy rpm-fusion GPG keys
-  tags: force_cp
+  tags: copy_repos
   copy: >
       src={{item}}
       dest=/etc/pki/rpm-gpg/

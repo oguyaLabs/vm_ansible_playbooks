@@ -1,36 +1,20 @@
 ---
 # Deploy all configs to all vms
-#execute verbose to view more:: ansible-playbook vm_playbook.yaml -vvvv -u root
+#execute verbose to view more:: 
+#ansible-playbook vm_playbook.yaml -vvvv -u root
+#execute verbose to view more:: use tags for specific stuffs in playbook
+#ansible-playbook vm_playbook.yaml -vvvv -u root
 
 # - hosts: all
 #   roles:
 #   - role: common
 
 - hosts: RHEL
+  gather_facts: yes
+  remote_user: root
   roles:
   - role: RHEL
 
 # - hosts: Debian
 #   roles:
 #   - role: Debain
-
-# - name: vms configuration play
-#   hosts: all
-#   remote_user: root
-#   gather_facts: no
-
-#   vars:
-#     #add vars
-#     ssh_port: 22
-
-# - hosts: Redhat
-#   gather_facts: no
-
-#   tasks:
-#     - name: copy yum configuration
-#       template: src=templates/yum.conf dest=/etc/yum.conf
-
-  # tasks:
-    # - name: copy yum configuration
-    #   template: src=templates/yum.conf dest=/etc/yum.conf
-    #   when: hosts = "RedHat"
