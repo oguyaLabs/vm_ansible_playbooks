@@ -2,9 +2,9 @@
 # Deploy all configs to all vms
 #execute verbose to view more:: ansible-playbook vm_playbook.yaml -vvvv -u root
 
-- hosts: all
-  roles:
-  - role: common
+# - hosts: all
+#   roles:
+#   - role: common
 
 - hosts: RHEL
   roles:
