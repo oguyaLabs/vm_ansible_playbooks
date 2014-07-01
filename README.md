@@ -1,4 +1,4 @@
-vm_ansible_playbooks
-====================
+VM Ansible Playbook
+=====================
 
-##Deploying Debian &amp; RHEL VMs using Ansible
+####Deploying Debian &amp; RHEL VMs using Ansible
