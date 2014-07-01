@@ -1,0 +1,45 @@
+---
+# This Playbook runs all the RHEL-based plays in the deployment 
+# Redhat: 
+# copy yum conf
+# TODO ADD SOME MORE
+# install: mysql, python-pip, php
+
+- name: Copy yum.conf to /etc/yum.conf
+  copy: src=templates/yum.conf dest=/etc/yum.conf
+
+- name: Create the EPEL Repository.
+  copy: src=epel.repo.j2 dest=/etc/yum.repos.d/epel.repo
+
+- name: Create the GPG key for EPEL
+  copy: src=RPM-GPG-KEY-EPEL-7 dest=/etc/pki/rpm-gpg
+
+- name: Copy iptables config
+  template: src=templates/iptables.j2 dest=/etc/sysconfig/iptables
+  notify: restart iptables
+
+# - name: Create the mongod user
+#   user: name=mongod comment="MongoD"
+
+# - name: Create the data directory for the namenode metadata
+#   file: path={{ mongodb_datadir_prefix }} owner=mongod group=mongod state=directory
+
+- name: Install yum packages
+  yum: name = {{item}} state = installed
+  with_items:
+    - python-pip
+    - mysql
+    - php
+
+
+# - name: Install the mongodb package
+#   yum: name={{ item }} state=installed
+#   with_items:
+#    - libselinux-python
+#    - mongo-10gen
+#    - mongo-10gen-server
+#    - bc
+#    - python-pip
+
+# - name: Install the latest pymongo package
+#   pip: name=pymongo state=latest use_mirrors=no 

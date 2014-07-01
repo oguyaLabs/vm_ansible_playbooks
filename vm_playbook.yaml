@@ -1,0 +1,39 @@
+---
+# Debian: 
+#	copy apt conf
+# Redhat: 
+#	copy yum conf
+# Common:
+#	copy iptables
+
+- name: vms configuration play
+  hosts: all
+  remote_user: root
+  gather_facts: no
+
+  vars:
+    #add vars
+    ssh_port: 22
+
+- hosts: Redhat
+  gather_facts: no
+
+  tasks:
+    - name: copy yum configuration
+      template: src=templates/yum.conf dest=/etc/yum.conf
+
+  # tasks:
+    # - name: copy yum configuration
+    #   template: src=templates/yum.conf dest=/etc/yum.conf
+    #   when: hosts = "RedHat"
+
+    # - name: copy apt configuration
+    #   template: src=templates/apt.conf dest=/etc/apt.conf
+    #   when: ansible_os_family = "Debian"
+
+    # - name: get os version
+    #   command: uname
+    #   register: os_version
+
+    # - name: show os version
+    #   shell: echo {{os_version.stdout}}
