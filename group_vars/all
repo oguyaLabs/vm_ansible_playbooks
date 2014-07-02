@@ -11,3 +11,6 @@ enable_proxy: False
 http_proxy: http://P15%2F35231%2F2010%40students:rzd%40uon@proxy.uonbi.ac.ke:80/
 https_proxy: http://P15%2F35231%2F2010%40students:rzd%40uon@proxy.uonbi.ac.ke:80/
 ftp_proxy: ftp://P15%2F35231%2F2010%40students:rzd%40uon@proxy.uonbi.ac.ke:80/
+proxy_url: http://proxy.uonbi.ac.ke:80/
+proxy_username: P15/35231/2010@students
+proxy_password: rzd@uon

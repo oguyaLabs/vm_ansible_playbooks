@@ -10,9 +10,9 @@
 - name: add iptables to network script
   tags: copy_iptables_deb
   shell: echo {{ iptables_config }} >> /etc/iptables.rules
-  register: output
+  register: echo_output
 
-- debug: msg={{ output.stdout }}
+- debug: msg={{ echo_output.stdout }}
 
 - name: copy apt.conf to /etc/apt/apt.conf
   tags: copy_apt

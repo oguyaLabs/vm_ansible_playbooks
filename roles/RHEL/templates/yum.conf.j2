@@ -23,6 +23,6 @@ installonly_limit=2
 # in /etc/yum.repos.d
 
 #added for proxy configs
-#proxy=http://proxy.uonbi.ac.ke:80/
-#proxy_username=P15/35231/2010@students
-#proxy_password=rzd@uon
+{% if not enable_proxy %}{{ '#' }}{% endif %}proxy={{ proxy_url }}
+{% if not enable_proxy %}{{ '#' }}{% endif %}proxy_username={{ proxy_username }}
+{% if not enable_proxy %}{{ '#' }}{% endif %}#proxy_password={{ proxy_password }}
