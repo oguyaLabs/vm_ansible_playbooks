@@ -49,12 +49,16 @@
 - name: Rebuild yum cache with fastest-mirrors
   command: /usr/bin/yum makecache
 
+- name: update all packages
+  tags: update_yum
+  yum: name=* state=latest
+
 - name: Install yum packages
   yum: name={{ item }} state=installed
   with_items:
    - python-pip
    - httpd
-   - mysqld
+   - mysql-server
    - MySQL-python
    - php
    - php-mysql

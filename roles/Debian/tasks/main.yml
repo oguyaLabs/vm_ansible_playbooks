@@ -1,0 +1,44 @@
+---
+# copy apt conf, repos
+# TODO ADD SOME MORE
+# install: mysql, python-pip, php
+
+- name: copy iptables
+  tags: copy_iptables_deb
+  template: src=iptables.j2 dest=/etc/iptables.rules force=yes
+
+- name: add iptables to network script
+  tags: copy_iptables_deb
+  shell: echo {{ iptables_config }} >> /etc/iptables.rules
+  register: output
+
+- debug: msg={{ output.stdout }}
+
+- name: copy apt.conf to /etc/apt/apt.conf
+  tags: copy_apt
+  template: src=apt.conf.j2 dest=/etc/apt/apt.conf
+
+- name: refresh apt cache
+  tags: refresh_cache
+  apt: update_cache=yes
+
+- name: update all apt packages
+  tags: update_apt
+  apt: upgrade=dist
+
+- name: install apt packages
+  tags: install_packages
+  apt: name={{item}} state=latest
+  with_items:
+   - mysql-client
+   - mysql-client-core
+   - mysql-common
+   - mysql-server
+   - mysql-server-core
+   - python-mysqldb
+   - php5
+   - php5-mysql
+   - python-pip
+
+# - name: open 
+# - name: start mysql-server

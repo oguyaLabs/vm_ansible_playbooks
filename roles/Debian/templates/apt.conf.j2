@@ -1,0 +1,3 @@
+{% if not enable_proxy %}{{ '#' }}{% endif %}Acquire::http::proxy"{{ http_proxy }}";
+{% if not enable_proxy %}{{ '#' }}{% endif %}Acquire::ftp::proxy"{{ ftp_proxy }}";
+{% if not enable_proxy %}{{ '#' }}{% endif %}Acquire::https::proxy"{{ https_proxy }}";

@@ -15,6 +15,8 @@
   roles:
   - role: RHEL
 
-# - hosts: Debian
-#   roles:
-#   - role: Debain
+- hosts: Debian
+  gather_facts: "{{ gather_facts }}"
+  remote_user: "{{ remote_user }}"
+  roles:
+  - role: Debian
